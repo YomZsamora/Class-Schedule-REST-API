@@ -49,4 +49,11 @@ public class SessionsTest {
         assertEquals("Samora", sessions.getSessionsMentor());
     }
 
+    @Test
+    public void setsSessionsId() {
+        Sessions sessions = new Sessions("Standup", "Samora", "https://meet.google.com/fxm-xjtr-dxm", 1);
+        sessions.setSessionsId(1);
+        assertEquals(1, sessions.getSessionsId());
+    }
+
 }

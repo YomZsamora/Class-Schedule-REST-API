@@ -38,4 +38,8 @@ public class Sessions {
     public void setSessionsMentor(String mentor) {
         this.mentor = mentor;
     }
+
+    public void setSessionsId(int sessionsId) {
+        this.sessionsId = sessionsId;
+    }
 }
