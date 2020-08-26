@@ -42,16 +42,37 @@ public class Sql2oSessionDao implements SessionDao{
 
     @Override
     public Sessions findById(int id) {
-        return null;
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM sessions WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Sessions.class);
+        }
     }
 
     @Override
     public void deleteById(int id) {
+        String sql = "DELETE from sessions WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
 
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void clearAll() {
-
+        String sql = "DELETE from sessions";
+        //this command resets the auto generated table ids
+        //without this the ids will continue to increment even after clearing the table
+        String resetSql = "ALTER SEQUENCE sessions_id_seq RESTART WITH 1;";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+            con.createQuery(resetSql).executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 }
