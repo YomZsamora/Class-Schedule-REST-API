@@ -1,53 +1,52 @@
 package models;
 
-import java.util.Objects;
-
 public class Sessions {
-    private String title;
-    private String mentor;
+    private String session_name;
+    private String description;
+    private int cohort_id;
     private String venue;
-    private int sessionsId;
+    private int module_id;
     private int id;
 
-    public Sessions(String title, String mentor, String venue, int sessionsId) {
-        this.title = title;
-        this.mentor = mentor;
+    public Sessions(String session_name, String description, int cohort_id, int module_id, String venue) {
+        this.session_name = session_name;
+        this.description = description;
+        this.cohort_id = cohort_id;
+        this.module_id = module_id;
         this.venue = venue;
-        this.sessionsId = sessionsId;
     }
 
-    public String getSessionsTitle() {
-        return title;
+    public String getSessionName() { return session_name; }
 
+    public void setSessionName(String session_name) {
+        this.session_name = session_name;
     }
 
-    public String getSessionsMentor() {
-        return mentor;
+    public String getDescription() {
+        return description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getCohortId() {
+        return cohort_id;
+    }
+
+    public void setCohortId(int cohort_id) { this.cohort_id = cohort_id; }
 
     public String getSessionsVenue() {
         return venue;
-    }
-
-    public int getSessionsId() {
-        return sessionsId;
-    }
-
-    public void setSessionsTitle(String title) {
-        this.title = title;
-    }
-
-    public void setSessionsMentor(String mentor) {
-        this.mentor = mentor;
     }
 
     public void setSessionsVenue(String venue) {
         this.venue = venue;
     }
 
-    public void setSessionsId(int sessionsId) {
-        this.sessionsId = sessionsId;
-    }
+    public int getModuleId() { return module_id; }
+
+    public void setModuleId(int module_id) { this.module_id = module_id; }
 
     public int getId() {
         return id;
@@ -57,20 +56,4 @@ public class Sessions {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Sessions)) return false;
-        Sessions sessions = (Sessions) o;
-        return sessionsId == sessions.sessionsId &&
-                id == sessions.id &&
-                Objects.equals(title, sessions.title) &&
-                Objects.equals(mentor, sessions.mentor) &&
-                Objects.equals(venue, sessions.venue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, mentor, venue, sessionsId, id);
-    }
 }
