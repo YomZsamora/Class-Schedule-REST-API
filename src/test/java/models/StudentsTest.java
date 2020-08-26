@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class StudentTest {
+public class StudentsTest {
     @Test
     public void studentInstantiatesCorrectly() {
         Students student = new Students("Gideon", "F87dafhjdhfa987", "Android",1);
