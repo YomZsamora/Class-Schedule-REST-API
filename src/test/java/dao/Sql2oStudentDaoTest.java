@@ -1,38 +1,78 @@
 package dao;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import models.Students;
+import org.junit.*;
+import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
 public class Sql2oStudentDaoTest {
 
-    @Before
-    public void setUp() throws Exception {
+    private static Connection conn;
+    private static Sql2oStudentDao studentDao;
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
+        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+
+        studentDao = new Sql2oStudentDao(sql2o);
+        conn = sql2o.open();
     }
 
     @After
     public void tearDown() throws Exception {
+        System.out.println("Clearing database");
+        studentDao.clearAll();
+    }
+
+    @AfterClass
+    public static void shutDown() throws Exception {
+        conn.close();
+        System.out.println("Connection closed");
     }
 
     @Test
-    public void createStudentAccount() {
+    public void creatingStudentAccountSetsId() {
+        Students testStudent = setupStudent();
+        assertNotEquals(0, testStudent.getId());
     }
 
     @Test
-    public void getAll() {
+    public void getAllReturnsAllStudents() {
+        Students testStudents = setupStudent();
+        studentDao.createStudentAccount(testStudents);
+        assertEquals(1, studentDao.getAll().size());
     }
 
     @Test
-    public void findById() {
+    public void findByIdReturnsCorrectStudent() {
+        Students testStudent = setupStudent();
+        Students otherStudent = setupStudent();
+        assertEquals(testStudent, studentDao.findById(testStudent.getId()));
     }
 
     @Test
-    public void deleteById() {
+    public void deleteByIdDeletesCorrectStudent() {
+        Students testStudent = setupStudent();
+        Students otherStudent = setupStudent();
+        studentDao.deleteById(otherStudent.getId());
+        assertEquals(1, studentDao.getAll().size());
     }
 
     @Test
-    public void clearAll() {
+    public void clearAllDeleteRecords() {
+        Students testStudents = setupStudent();
+        Students otherStudents = setupStudent();
+        studentDao.clearAll();
+        assertEquals(0, studentDao.getAll().size());
+    }
+
+    //helper methods
+    private Students setupStudent(){
+        Students student = new Students("Ben","79adf126ad4", "Android", 2);
+        studentDao.createStudentAccount(student);
+        return student;
     }
 }
