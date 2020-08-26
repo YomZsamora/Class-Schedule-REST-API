@@ -3,12 +3,11 @@ package models;
 import java.util.Objects;
 
 public class Sessions {
-
-    public String title;
-    public String mentor;
-    public String venue;
-    public int sessionsId;
-    public int id;
+    private String title;
+    private String mentor;
+    private String venue;
+    private int sessionsId;
+    private int id;
 
     public Sessions(String title, String mentor, String venue, int sessionsId) {
         this.title = title;

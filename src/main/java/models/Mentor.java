@@ -1,9 +1,9 @@
 package models;
 
 public class Mentor {
-    public String mentorName;
-    public int sessionsId;
-    public int id;
+    private String mentorName;
+    private int sessionsId;
+    private int id;
 
     public Mentor(String mentorName, int sessionsId) {
         this.mentorName = mentorName;
