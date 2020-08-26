@@ -40,6 +40,8 @@ public class Sql2oSessionDaoTest {
 
     @Test
     public void creatingSessionSetsId() {
+        Sessions testSession = setupSession();
+        assertNotEquals(0, testSession.getId());
     }
 
     @Test
@@ -58,11 +60,11 @@ public class Sql2oSessionDaoTest {
     public void clearAll() {
     }
     //helper methods
-    public Sessions setupSession() {
+    private Sessions setupSession() {
         Timestamp start_time = new Timestamp(System.currentTimeMillis());
         try{
             //we make our thread 'sleep' to simulate different start and end times
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
