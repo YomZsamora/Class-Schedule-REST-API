@@ -50,6 +50,13 @@ public class SessionsTest {
     }
 
     @Test
+    public void setsSessionsVenue() {
+        Sessions sessions = new Sessions("Standup", "Samora", "https://meet.google.com/fxm-xjtr-dxm", 1);
+        sessions.setSessionsVenue("https://meet.google.com/fxm-xjtr-dxm");
+        assertEquals("https://meet.google.com/fxm-xjtr-dxm", sessions.getSessionsVenue());
+    }
+
+    @Test
     public void setsSessionsId() {
         Sessions sessions = new Sessions("Standup", "Samora", "https://meet.google.com/fxm-xjtr-dxm", 1);
         sessions.setSessionsId(1);

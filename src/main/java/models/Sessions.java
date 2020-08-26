@@ -39,7 +39,13 @@ public class Sessions {
         this.mentor = mentor;
     }
 
+    public void setSessionsVenue(String venue) {
+        this.venue = venue;
+    }
+
     public void setSessionsId(int sessionsId) {
         this.sessionsId = sessionsId;
     }
+
+
 }
