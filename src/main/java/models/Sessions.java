@@ -2,12 +2,14 @@ package models;
 
 public class Sessions {
 
-    private final String mentor;
     private String title;
+    private String mentor;
+    private String venue;
 
     public Sessions(String title, String mentor, String venue) {
         this.title = title;
         this.mentor = mentor;
+        this.venue = venue;
     }
 
     public String getSessionsTitle() {
@@ -17,5 +19,9 @@ public class Sessions {
 
     public String getSessionsMentor() {
         return mentor;
+    }
+
+    public String getSessionsVenue() {
+        return venue;
     }
 }
