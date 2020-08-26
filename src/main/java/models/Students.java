@@ -47,4 +47,11 @@ public class Students {
         this.id = id;
     }
 
+    public String getTrack() {
+        return track;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
+    }
 }
