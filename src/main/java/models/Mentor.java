@@ -3,6 +3,7 @@ package models;
 public class Mentor {
     public String mentorName;
     public int sessionsId;
+    public int id;
 
     public Mentor(String mentorName, int sessionsId) {
         this.mentorName = mentorName;
@@ -23,5 +24,13 @@ public class Mentor {
 
     public void setSessionsId(int sessionsId) {
         this.sessionsId = sessionsId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
