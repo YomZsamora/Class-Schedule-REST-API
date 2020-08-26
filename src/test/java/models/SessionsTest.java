@@ -42,4 +42,11 @@ public class SessionsTest {
         assertEquals("Standup", sessions.getSessionsTitle());
     }
 
+    @Test
+    public void setsSessionsMentor() {
+        Sessions sessions = new Sessions("Standup", "Samora", "https://meet.google.com/fxm-xjtr-dxm", 1);
+        sessions.setSessionsMentor("Samora");
+        assertEquals("Samora", sessions.getSessionsMentor());
+    }
+
 }

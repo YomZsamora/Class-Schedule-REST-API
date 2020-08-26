@@ -34,4 +34,8 @@ public class Sessions {
     public void setSessionsTitle(String title) {
         this.title = title;
     }
+
+    public void setSessionsMentor(String mentor) {
+        this.mentor = mentor;
+    }
 }
