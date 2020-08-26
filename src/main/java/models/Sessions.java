@@ -5,11 +5,13 @@ public class Sessions {
     private String title;
     private String mentor;
     private String venue;
+    private int sessionsId;
 
-    public Sessions(String title, String mentor, String venue) {
+    public Sessions(String title, String mentor, String venue, int sessionsId) {
         this.title = title;
         this.mentor = mentor;
         this.venue = venue;
+        this.sessionsId = sessionsId;
     }
 
     public String getSessionsTitle() {
@@ -23,5 +25,13 @@ public class Sessions {
 
     public String getSessionsVenue() {
         return venue;
+    }
+
+    public int getSessionsId() {
+        return sessionsId;
+    }
+
+    public void setSessionsTitle(String title) {
+        this.title = title;
     }
 }
