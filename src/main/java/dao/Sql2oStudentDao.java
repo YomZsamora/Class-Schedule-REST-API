@@ -1,7 +1,9 @@
 package dao;
 
 import models.Students;
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 
@@ -15,26 +17,58 @@ public class Sql2oStudentDao implements StudentDao {
 
     @Override
     public void createStudentAccount(Students student) {
+        String sqlString = "INSERT INTO students (name, cohort_id, track, uid) VALUES (:name, :cohort_id, :track, :uid)";
 
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sqlString, true)
+                    .bind(student)
+                    .executeUpdate()
+                    .getKey();
+            student.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public List<Students> getAll() {
-        return null;
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM students")
+                    .executeAndFetch(Students.class);
+        }
     }
 
     @Override
     public Students findById(int id) {
-        return null;
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM students WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Students.class);
+        }
     }
 
     @Override
     public void deleteById(int id) {
+        String sql = "DELETE from students WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
 
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void clearAll() {
-
+        String sql = "DELETE from students";
+        String resetSql = "ALTER SEQUENCE students_id_seq RESTART WITH 1;";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+            con.createQuery(resetSql).executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 }
