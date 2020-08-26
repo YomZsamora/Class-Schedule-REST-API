@@ -1,15 +1,19 @@
 package dao;
 
+import models.Sessions;
+
+import java.util.List;
+
 public interface SessionDao {
 
     //create new session'
-//    void createSession(Session session);
+    void createSession(Sessions session);
 
     //read db
-//    List<Session> getAll();
-//    Session findById(int id);
+    List<Sessions> getAll();
+    Sessions findById(int id);
 
     //delete
-//    void deleteById(int id);
-//    void clearAll();
+    void deleteById(int id);
+    void clearAll();
 }

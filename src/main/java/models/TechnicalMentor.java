@@ -1,11 +1,11 @@
 package models;
 
-public class Technical_mentor {
+public class TechnicalMentor {
     private String name;
     private String uid;
     private int id;
 
-    public Technical_mentor(String name, String uid) {
+    public TechnicalMentor(String name, String uid) {
         this.name = name;
         this.uid = uid;
     }
