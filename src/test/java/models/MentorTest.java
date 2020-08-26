@@ -12,4 +12,16 @@ public class MentorTest {
         assertEquals(true, mentor instanceof Mentor);
     }
 
+    @Test
+    public void getMentorName() {
+        Mentor mentor = new Mentor ("Samora", 1);
+        assertEquals("Samora", mentor.getMentorName());
+    }
+
+    @Test
+    public void setMentorName() {
+        Mentor mentor = new Mentor ("Samora", 1);
+        mentor.setMentorName("Samora");
+        assertEquals("Samora", mentor.getMentorName());
+    }
 }
