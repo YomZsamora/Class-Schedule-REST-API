@@ -63,4 +63,11 @@ public class SessionsTest {
         assertEquals(1, sessions.getSessionsId());
     }
 
+    @Test
+    public void setId() {
+        Sessions sessions = new Sessions("Standup", "Samora", "https://meet.google.com/fxm-xjtr-dxm", 1);
+        sessions.setId(1);
+        assertEquals(1, sessions.getId());
+    }
+
 }

@@ -2,10 +2,11 @@ package models;
 
 public class Sessions {
 
-    private String title;
-    private String mentor;
-    private String venue;
-    private int sessionsId;
+    public String title;
+    public String mentor;
+    public String venue;
+    public int sessionsId;
+    public int id;
 
     public Sessions(String title, String mentor, String venue, int sessionsId) {
         this.title = title;
@@ -47,5 +48,11 @@ public class Sessions {
         this.sessionsId = sessionsId;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }
