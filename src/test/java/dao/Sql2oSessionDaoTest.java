@@ -18,8 +18,8 @@ public class Sql2oSessionDaoTest {
     public static void setUp() throws Exception {
         //this method executes once and before all tests
         //TODO make sure to change this to your localhost before running tests
-        String connectionString = "jdbc:postgresql://User:7181@localhost:5432/class_schedule_test";
-        Sql2o sql2o = new Sql2o(connectionString);
+        String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
+        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
 
         sessionDao = new Sql2oSessionDao(sql2o);
         conn = sql2o.open();
@@ -45,19 +45,32 @@ public class Sql2oSessionDaoTest {
     }
 
     @Test
-    public void getAll() {
+    public void getAllReturnsAllSessions() {
+        Sessions sessions = setupSession();
+        assertEquals(1, sessionDao.getAll().size());
     }
 
     @Test
-    public void findById() {
+    public void findByIdReturnsCorrectSession() {
+        Sessions testSession = setupSession();
+        Sessions otherSession = setupSession();
+        assertEquals(testSession, sessionDao.findById(testSession.getId()));
     }
 
     @Test
-    public void deleteById() {
+    public void deleteByIdDeletesTheCorrectSession() {
+        Sessions testSession = setupSession();
+        Sessions otherSession = setupSession();
+        sessionDao.deleteById(otherSession.getId());
+        assertEquals(1, sessionDao.getAll().size());
     }
 
     @Test
-    public void clearAll() {
+    public void clearAllDeletesAllRecords() {
+        Sessions testSession = setupSession();
+        Sessions otherSession = setupSession();
+        sessionDao.clearAll();
+        assertEquals(0, sessionDao.getAll().size());
     }
     //helper methods
     private Sessions setupSession() {

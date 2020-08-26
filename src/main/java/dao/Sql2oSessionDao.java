@@ -17,8 +17,7 @@ public class Sql2oSessionDao implements SessionDao{
 
     @Override
     public void createSession(Sessions session) {
-        String sqlString = "INSERT INTO sessions (session_name, description, cohort_id, module_id, start_time, end_time) VALUES " +
-                "(:session_name, :description, :cohort_id, :module_id, :start_time, :end_time)";
+        String sqlString = "INSERT INTO sessions (session_name, description, cohort_id, module_id, start_time, end_time) VALUES (:session_name, :description, :cohort_id, :module_id, :start_time, :end_time)";
 
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sqlString, true)
@@ -27,7 +26,7 @@ public class Sql2oSessionDao implements SessionDao{
                     .getKey();
             session.setId(id);
         } catch (Sql2oException ex) {
-            System.out.println(ex);
+            System.out.println(String.format("Problem here ! Sql2oException : %s", ex));
         }
 
     }

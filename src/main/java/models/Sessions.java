@@ -68,4 +68,32 @@ public class Sessions {
     public void setEnd_time(Timestamp end_time) {
         this.end_time = end_time;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Sessions sessions = (Sessions) o;
+
+        if (cohort_id != sessions.cohort_id) return false;
+        if (module_id != sessions.module_id) return false;
+        if (id != sessions.id) return false;
+        if (!session_name.equals(sessions.session_name)) return false;
+        if (!description.equals(sessions.description)) return false;
+        if (!start_time.equals(sessions.start_time)) return false;
+        return end_time.equals(sessions.end_time);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = session_name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + cohort_id;
+        result = 31 * result + module_id;
+        result = 31 * result + start_time.hashCode();
+        result = 31 * result + end_time.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
 }
