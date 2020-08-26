@@ -17,4 +17,10 @@ public class StudentTest {
         Student student = new Student ("Gideon", 1);
         assertEquals("Gideon", student.getName());
     }
+
+    @Test
+    public void getSessionId() {
+        Student student = new Student ("Gideon", 1);
+        assertEquals(1, student.getSessionId());
+    }
 }
