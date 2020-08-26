@@ -24,7 +24,7 @@ public class StudentTest {
     }
 
     @Test
-    public void getSessionId() {
+    public void getSessionsId() {
         Student student = new Student ("Gideon", 1, 1);
         assertEquals(1, student.getSessionsId());
     }

@@ -24,4 +24,17 @@ public class MentorTest {
         mentor.setMentorName("Samora");
         assertEquals("Samora", mentor.getMentorName());
     }
+
+    @Test
+    public void getSessionsId() {
+        Mentor mentor = new Mentor ("Samora", 1);
+        assertEquals(1, mentor.getSessionsId());
+    }
+
+    @Test
+    public void setSessionsId() {
+        Mentor mentor = new Mentor ("Samora", 1);
+        mentor.setSessionsId(1);
+        assertEquals(1, mentor.getSessionsId());
+    }
 }
