@@ -11,4 +11,10 @@ public class StudentTest {
         Student student = new Student ("Gideon", 1);
         assertEquals(true, student instanceof Student);
     }
+
+    @Test
+    public void getStudentName() {
+        Student student = new Student ("Gideon", 1);
+        assertEquals("Gideon", student.getName());
+    }
 }
