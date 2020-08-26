@@ -1,11 +1,11 @@
 package dao;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import models.Sessions;
+import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.sql.Timestamp;
 
 import static org.junit.Assert.*;
 
@@ -27,10 +27,19 @@ public class Sql2oSessionDaoTest {
 
     @After
     public void tearDown() throws Exception {
+        //this method executes after each test
+        System.out.println("Clearing database");
+        sessionDao.clearAll();
+    }
+
+    @AfterClass
+    public static void shutDown() throws Exception {
+        conn.close();
+        System.out.println("Connection closed");
     }
 
     @Test
-    public void createSession() {
+    public void creatingSessionSetsId() {
     }
 
     @Test
@@ -47,5 +56,19 @@ public class Sql2oSessionDaoTest {
 
     @Test
     public void clearAll() {
+    }
+    //helper methods
+    public Sessions setupSession() {
+        Timestamp start_time = new Timestamp(System.currentTimeMillis());
+        try{
+            //we make our thread 'sleep' to simulate different start and end times
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Timestamp end_time = new Timestamp(System.currentTimeMillis());
+        Sessions session = new Sessions("Unblocking session", "Heroku deployment and endpoints testing", 1, 1, start_time, end_time);
+        sessionDao.createSession(session);
+        return session;
     }
 }
