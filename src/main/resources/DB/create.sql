@@ -1,5 +1,5 @@
 CREATE DATABASE class_schedule;
-\c class_schedule_db;
+\c class_schedule;
 
 CREATE TABLE IF NOT EXISTS sessions (
   id SERIAL PRIMARY KEY,
