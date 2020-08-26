@@ -14,7 +14,7 @@ public class StudentTest {
     @Test
     public void getStudentName() {
         Student student = new Student ("Gideon", 1,1);
-        assertEquals("Gideon", student.getName());
+        assertEquals("Gideon", student.getStudentName());
     }
 
     @Test
@@ -26,6 +26,34 @@ public class StudentTest {
     @Test
     public void getSessionId() {
         Student student = new Student ("Gideon", 1, 1);
-        assertEquals(1, student.getSessionId());
+        assertEquals(1, student.getSessionsId());
+    }
+
+    @Test
+    public void setStudentName() {
+        Student student = new Student ("Gideon", 1, 1);
+        student.setStudentName("Gideon");
+        assertEquals("Gideon", student.getStudentName());
+    }
+
+    @Test
+    public void setStudentId() {
+        Student student = new Student ("Gideon", 1, 1);
+        student.setStudentId(1);
+        assertEquals(1, student.getStudentId());
+    }
+
+    @Test
+    public void setSessionsId() {
+        Student student = new Student ("Gideon", 1, 1);
+        student.setSessionsId(1);
+        assertEquals(1, student.getSessionsId());
+    }
+
+    @Test
+    public void setId() {
+        Student student = new Student ("Gideon", 1, 1);
+        student.setId(1);
+        assertEquals(1, student.getId());
     }
 }

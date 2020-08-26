@@ -1,25 +1,47 @@
 package models;
 
 public class Student {
-    private final String name;
-    private final int sessionId;
-    private final int studentId;
+    public String studentName;
+    public int studentId;
+    public int sessionsId;
+    public int id;
 
-    public Student(String name, int studentId, int sessionsId) {
-        this.name = name;
+
+    public Student(String studentName, int studentId, int sessionsId) {
+        this.studentName = studentName;
         this.studentId = studentId;
-        this.sessionId = sessionsId;
+        this.sessionsId = sessionsId;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public int getSessionId() {
-        return sessionId;
+    public int getSessionsId() {
+        return sessionsId;
     }
 
     public int getStudentId() {
         return studentId;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName= studentName;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setSessionsId(int sessionsId) {
+        this.sessionsId = sessionsId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
