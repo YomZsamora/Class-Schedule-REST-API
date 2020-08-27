@@ -22,6 +22,12 @@ public class Sql2oSessionDao implements SessionDao{
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sqlString, true)
                     .bind(session)
+                    .addParameter("session_name", session.getSessionName())
+                    .addParameter("description", session.getDescription())
+                    .addParameter("cohort_id", session.getCohortId())
+                    .addParameter("module_id", session.getModuleId())
+                    .addParameter("start_time", session.getStart_time())
+                    .addParameter("end_time", session.getEnd_time())
                     .executeUpdate()
                     .getKey();
             session.setId(id);
@@ -35,6 +41,7 @@ public class Sql2oSessionDao implements SessionDao{
     public List<Sessions> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM sessions")
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Sessions.class);
         }
     }
@@ -44,6 +51,7 @@ public class Sql2oSessionDao implements SessionDao{
         try (Connection con = sql2o.open()) {
             return con.createQuery("SELECT * FROM sessions WHERE id = :id")
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetchFirst(Sessions.class);
         }
     }
@@ -54,6 +62,7 @@ public class Sql2oSessionDao implements SessionDao{
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeUpdate();
 
         } catch (Sql2oException ex){
@@ -68,8 +77,8 @@ public class Sql2oSessionDao implements SessionDao{
         //without this the ids will continue to increment even after clearing the table
         String resetSql = "ALTER SEQUENCE sessions_id_seq RESTART WITH 1;";
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql).executeUpdate();
-            con.createQuery(resetSql).executeUpdate();
+            con.createQuery(sql).throwOnMappingFailure(false).executeUpdate();
+            con.createQuery(resetSql).throwOnMappingFailure(false).executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
