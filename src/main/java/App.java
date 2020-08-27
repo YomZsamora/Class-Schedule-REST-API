@@ -13,7 +13,7 @@ public class App {
         Connection conn;
         Gson gson = new Gson();
 
-        //ben change this to match the db you have created
+        //TODO ben change this to match the db you have created
         String connectionString = "jdbc:h2:~/class-scheduler.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
 
