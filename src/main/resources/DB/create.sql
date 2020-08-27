@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS sessions (
   description varchar,
   cohort_id int,
   module_id int,
-  start_time date,
-  end_time date
+  start_time timestamp,
+  end_time timestamp
 );
 
 CREATE TABLE IF NOT EXISTS students (
