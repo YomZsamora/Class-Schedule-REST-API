@@ -1,4 +1,4 @@
 package dao;
 
-public class Sql2oModuleDao {
+public class Sql2oModuleDao implements ModuleDao {
 }

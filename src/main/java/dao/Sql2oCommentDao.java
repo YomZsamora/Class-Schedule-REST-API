@@ -1,4 +1,4 @@
 package dao;
 
-public class Sql2oCommentDao {
+public class Sql2oCommentDao implements CommentDao {
 }

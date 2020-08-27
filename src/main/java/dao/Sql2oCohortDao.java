@@ -1,4 +1,4 @@
 package dao;
 
-public class Sql2oCohortDao {
+public class Sql2oCohortDao implements CohortDao {
 }
