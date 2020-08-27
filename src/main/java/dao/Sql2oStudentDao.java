@@ -20,8 +20,11 @@ public class Sql2oStudentDao implements StudentDao {
         String sqlString = "INSERT INTO students (name, cohort_id, track, uid) VALUES (:name, :cohort_id, :track, :uid)";
 
         try(Connection con = sql2o.open()){
-            int id = (int) con.createQuery(sqlString, true)
-                    .bind(student)
+            int id = (int)con.createQuery(sqlString, true)
+                    .addParameter("name", student.getStudentName())
+                    .addParameter("cohort_id", student.getCohortId())
+                    .addParameter("track", student.getTrack())
+                    .addParameter("uid", student.getUid())
                     .executeUpdate()
                     .getKey();
             student.setId(id);
@@ -34,6 +37,7 @@ public class Sql2oStudentDao implements StudentDao {
     public List<Students> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM students")
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(Students.class);
         }
     }
@@ -43,6 +47,7 @@ public class Sql2oStudentDao implements StudentDao {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM students WHERE id = :id")
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetchFirst(Students.class);
         }
     }
@@ -53,6 +58,7 @@ public class Sql2oStudentDao implements StudentDao {
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeUpdate();
 
         } catch (Sql2oException ex){
@@ -65,8 +71,8 @@ public class Sql2oStudentDao implements StudentDao {
         String sql = "DELETE from students";
         String resetSql = "ALTER SEQUENCE students_id_seq RESTART WITH 1;";
         try (Connection con = sql2o.open()) {
-            con.createQuery(sql).executeUpdate();
-            con.createQuery(resetSql).executeUpdate();
+            con.createQuery(sql).throwOnMappingFailure(false).executeUpdate();
+            con.createQuery(resetSql).throwOnMappingFailure(false).executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
