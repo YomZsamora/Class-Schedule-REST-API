@@ -71,7 +71,7 @@ public class Sql2oTechnicalMentorDaoTest {
 
     //helper methods
     private TechnicalMentor setupTechnicalMentor(){
-        TechnicalMentor technicalMentor = new TechnicalMentor("Samora", "7hi687bh8shf9780u");
+        TechnicalMentor technicalMentor = new TechnicalMentor("Ben", "7hi687bh8shf9780u");
         technicalMentorDao.createTechnicalMentorAccount(technicalMentor);
         return technicalMentor;
     }
