@@ -1,8 +1,9 @@
 package models;
 
 public class Comments {
-    private String content;
     private int student_id;
+    private String content;
+    private int id;
 
     public Comments(int student_id, String content) {
         this.student_id = student_id;
@@ -23,5 +24,13 @@ public class Comments {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

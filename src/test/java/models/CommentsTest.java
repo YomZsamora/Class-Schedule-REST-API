@@ -38,4 +38,11 @@ public class CommentsTest {
         comments.setContent("Session was well coordinated");
         assertEquals("Session was well coordinated", comments.getContent());
     }
+
+    @Test
+    public void setId() {
+        Comments comments = new Comments(1, "Session was well coordinated");
+        comments.setId(1);
+        assertEquals(1, comments.getId());
+    }
 }
