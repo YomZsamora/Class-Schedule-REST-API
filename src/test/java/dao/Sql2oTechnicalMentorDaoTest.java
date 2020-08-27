@@ -41,7 +41,7 @@ public class Sql2oTechnicalMentorDaoTest {
 
     @Test
     public void getAllReturnsAllTMs() {
-        TechnicalMentor testTechnicalMentor = setupTechnicalMentor();
+        TechnicalMentor testTechnicalMentor = new TechnicalMentor("Samora", "7hi687bh8shf9780u");
         technicalMentorDao.createTechnicalMentorAccount(testTechnicalMentor);
         assertEquals(1, technicalMentorDao.getAll().size());
     }
@@ -58,15 +58,15 @@ public class Sql2oTechnicalMentorDaoTest {
         TechnicalMentor testTechnicalMentor = setupTechnicalMentor();
         TechnicalMentor otherTechnicalMentor = setupTechnicalMentor();
         technicalMentorDao.deleteById(otherTechnicalMentor.getId());
-        assertEquals(otherTechnicalMentor, technicalMentorDao.findById(otherTechnicalMentor.getId()));
+        assertEquals(1, technicalMentorDao.getAll().size());
     }
 
     @Test
     public void clearAllRemovesAllRecords() {
         TechnicalMentor testTechnicalMentor = setupTechnicalMentor();
         TechnicalMentor otherTechnicalMentor = setupTechnicalMentor();
-        technicalMentorDao.deleteById(otherTechnicalMentor.getId());
-        assertEquals(otherTechnicalMentor, technicalMentorDao.findById(otherTechnicalMentor.getId()));
+        technicalMentorDao.clearAll();
+        assertEquals(0, technicalMentorDao.getAll().size());
     }
 
     //helper methods
