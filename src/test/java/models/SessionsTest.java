@@ -5,12 +5,13 @@ import org.junit.Test;
 import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SessionsTest {
     @Test
     public void sessionsInstantiatesCorrectly() {
         Sessions sessions = setUpSession();
-        assertEquals(true, sessions instanceof Sessions);
+        assertTrue(true);
     }
 
     @Test
