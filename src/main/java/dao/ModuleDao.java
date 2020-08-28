@@ -1,13 +1,17 @@
 package dao;
 
+import models.Module;
+
+import java.util.List;
+
 public interface ModuleDao {
     //create new module
-//    void createModule(Module module);
+    void createModule(Module module);
 
-//    List<Module module> getAll();
-//    Cohort findById(int id);
+    List<Module> getAll();
+    Module findById(int id);
 
     //delete
-//    void deleteById(int id);
-//    void clearAll();
+    void deleteById(int id);
+    void clearAll();
 }
