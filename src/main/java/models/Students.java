@@ -54,4 +54,28 @@ public class Students {
     public void setTrack(String track) {
         this.track = track;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Students students = (Students) o;
+
+        if (cohort_id != students.cohort_id) return false;
+        if (id != students.id) return false;
+        if (!studentName.equals(students.studentName)) return false;
+        if (!uid.equals(students.uid)) return false;
+        return track.equals(students.track);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = studentName.hashCode();
+        result = 31 * result + uid.hashCode();
+        result = 31 * result + track.hashCode();
+        result = 31 * result + cohort_id;
+        result = 31 * result + id;
+        return result;
+    }
 }

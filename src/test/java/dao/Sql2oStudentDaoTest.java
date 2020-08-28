@@ -41,7 +41,7 @@ public class Sql2oStudentDaoTest {
 
     @Test
     public void getAllReturnsAllStudents() {
-        Students testStudents = setupStudent();
+        Students testStudents = new Students("Ben","79adf126ad4", "Android", 1);
         studentDao.createStudentAccount(testStudents);
         assertEquals(1, studentDao.getAll().size());
     }
@@ -50,7 +50,7 @@ public class Sql2oStudentDaoTest {
     public void findByIdReturnsCorrectStudent() {
         Students testStudent = setupStudent();
         Students otherStudent = setupStudent();
-        assertEquals(testStudent, studentDao.findById(testStudent.getId()));
+        assertEquals(otherStudent, studentDao.findById(otherStudent.getId()));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class Sql2oStudentDaoTest {
 
     //helper methods
     private Students setupStudent(){
-        Students student = new Students("Ben","79adf126ad4", "Android", 2);
+        Students student = new Students("Ben","79adf126ad4", "Android", 1);
         studentDao.createStudentAccount(student);
         return student;
     }

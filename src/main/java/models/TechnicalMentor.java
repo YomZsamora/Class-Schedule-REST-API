@@ -33,4 +33,24 @@ public class TechnicalMentor {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TechnicalMentor that = (TechnicalMentor) o;
+
+        if (id != that.id) return false;
+        if (!name.equals(that.name)) return false;
+        return uid.equals(that.uid);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + uid.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
 }
