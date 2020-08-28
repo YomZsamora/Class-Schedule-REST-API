@@ -38,6 +38,11 @@ public class Sql2oSessionDao implements SessionDao{
     }
 
     @Override
+    public void add(Sessions sessions) {
+
+    }
+
+    @Override
     public List<Sessions> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM sessions")
