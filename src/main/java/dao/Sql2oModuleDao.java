@@ -16,11 +16,11 @@ public class Sql2oModuleDao implements ModuleDao {
 
     @Override
     public void createModule(Module module) {
-        String sqlString = "INSERT INTO module (student_id, content) VALUES (:student_id, :content)";
+        String sqlString = "INSERT INTO module (name) VALUES (:name)";
 
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sqlString, true)
-                    .bind(module)
+                    .addParameter("name", module.getModuleName())
                     .executeUpdate()
                     .getKey();
             module.setId(id);
