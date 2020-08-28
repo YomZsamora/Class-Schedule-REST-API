@@ -6,10 +6,19 @@ public class Cohort {
 
     private String name;
     private Date start_date;
+    private int id;
 
     public Cohort(String name, Date start_date) {
         this.name = name;
         this.start_date = start_date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
