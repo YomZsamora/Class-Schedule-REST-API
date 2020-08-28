@@ -4,7 +4,7 @@ public class Module {
     private String name;
     private int id;
 
-    public Module(String module_name) {
+    public Module(String name) {
         this.name = name;
     }
 
@@ -12,7 +12,7 @@ public class Module {
         return name;
     }
 
-    public void setModuleName(String module_name) {
+    public void setModuleName(String name) {
         this.name = name;
     }
 
