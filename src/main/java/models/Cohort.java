@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Cohort {
 
@@ -41,17 +42,14 @@ public class Cohort {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Cohort cohort = (Cohort) o;
-
-        if (!name.equals(cohort.name)) return false;
-        return start_date.equals(cohort.start_date);
+        return id == cohort.id &&
+                Objects.equals(name, cohort.name) &&
+                Objects.equals(start_date, cohort.start_date);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + start_date.hashCode();
-        return result;
+        return Objects.hash(name, start_date, id);
     }
 }
