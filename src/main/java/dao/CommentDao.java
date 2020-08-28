@@ -1,13 +1,17 @@
 package dao;
 
+import models.Comments;
+
+import java.util.List;
+
 public interface CommentDao {
     //create new comment
-//    void createComment(Comment comment);
+    void createComment(Comments comment);
 
-//    List<Comment comment> getAll();
-//    Cohort findById(int id);
+    List<Comments> getAll();
+    Comments findById(int id);
 
     //delete
-//    void deleteById(int id);
-//    void clearAll();
+    void deleteById(int id);
+    void clearAll();
 }
