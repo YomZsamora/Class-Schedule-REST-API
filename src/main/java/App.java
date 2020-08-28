@@ -22,7 +22,7 @@ public class App {
 
         sessionDao = new Sql2oSessionDao(sql2o);
         studentDao = new Sql2oStudentDao(sql2o);
-        technicalMentorDao = new Sql2oTechnicalMentorDao();
+        technicalMentorDao = new Sql2oTechnicalMentorDao(sql2o);
         conn = sql2o.open();
 
         //create new session

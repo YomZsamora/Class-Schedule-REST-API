@@ -22,6 +22,8 @@ public class Sql2oCommentDao implements CommentDao {
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sqlString, true)
                     .bind(comments)
+                    .addParameter("student_id", comments.getStudentId())
+                    .addParameter("content", comments.getContent())
                     .executeUpdate()
                     .getKey();
             comments.setId(id);
