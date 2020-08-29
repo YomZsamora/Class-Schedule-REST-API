@@ -70,4 +70,8 @@ public class Sql2oModuleDao implements ModuleDao {
             System.out.println(ex);
         }
     }
+
+    public void add(Module module) {
+
+    }
 }

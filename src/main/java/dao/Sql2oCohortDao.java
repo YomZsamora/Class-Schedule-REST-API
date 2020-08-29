@@ -72,4 +72,8 @@ public class Sql2oCohortDao implements CohortDao {
             System.out.println(ex);
         }
     }
+
+    public void add(Cohort cohort) {
+
+    }
 }

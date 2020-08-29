@@ -77,4 +77,8 @@ public class Sql2oStudentDao implements StudentDao {
             System.out.println(ex);
         }
     }
+
+    public void add(Students students) {
+
+    }
 }

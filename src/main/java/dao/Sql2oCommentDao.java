@@ -73,4 +73,8 @@ public class Sql2oCommentDao implements CommentDao {
             System.out.println(ex);
         }
     }
+
+    public void add(Comments comments) {
+
+    }
 }

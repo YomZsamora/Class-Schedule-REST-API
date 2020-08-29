@@ -71,4 +71,8 @@ public class Sql2oTechnicalMentorDao implements TechnicalMentorDao {
             System.out.println(ex);
         }
     }
+
+    public void add(TechnicalMentor technicalMentor) {
+
+    }
 }
