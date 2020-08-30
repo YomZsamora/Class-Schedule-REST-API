@@ -69,6 +69,7 @@ public class Students {
         return track.equals(students.track);
     }
 
+    //hashcode error(Find why student name could be null)
     @Override
     public int hashCode() {
         int result = studentName.hashCode();

@@ -15,7 +15,7 @@ public class Sql2oStudentDaoTest {
     @BeforeClass
     public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
-        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+        Sql2o sql2o = new Sql2o(connectionString, "gideon", "33450715");
 
         studentDao = new Sql2oStudentDao(sql2o);
         conn = sql2o.open();
@@ -35,6 +35,12 @@ public class Sql2oStudentDaoTest {
 
     @Test
     public void creatingStudentAccountSetsId() {
+        Students testStudent = setupStudent();
+        assertNotEquals(0, testStudent.getId());
+    }
+
+    @Test
+    public void addStudentAccountSetsId() {
         Students testStudent = setupStudent();
         assertNotEquals(0, testStudent.getId());
     }
