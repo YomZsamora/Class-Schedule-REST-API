@@ -8,6 +8,7 @@ public interface TechnicalMentorDao {
 
     //create new account
     void createTechnicalMentorAccount(TechnicalMentor technicalMentor);
+    void add(TechnicalMentor technicalMentor);
 
     //get a list of all TMs
     List<TechnicalMentor> getAll();

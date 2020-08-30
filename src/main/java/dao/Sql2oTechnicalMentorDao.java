@@ -31,6 +31,21 @@ public class Sql2oTechnicalMentorDao implements TechnicalMentorDao {
     }
 
     @Override
+    public void add(TechnicalMentor technicalMentor) {
+        String sqlString = "INSERT INTO technical_mentors (name, uid) VALUES (:name, :uid)";
+
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sqlString, true)
+                    .bind(technicalMentor)
+                    .executeUpdate()
+                    .getKey();
+            technicalMentor.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public List<TechnicalMentor> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM technical_mentors")
@@ -70,9 +85,5 @@ public class Sql2oTechnicalMentorDao implements TechnicalMentorDao {
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
-    }
-
-    public void add(TechnicalMentor technicalMentor) {
-
     }
 }
