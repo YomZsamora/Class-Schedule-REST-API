@@ -15,6 +15,14 @@ public class CohortTest {
         assertEquals(true, cohort instanceof Cohort);
     }
 
+    @Test
+    public void setId() {
+        Cohort cohort = setUpCohort();
+        cohort.setId(1);
+        assertEquals(1, cohort.getId());
+    }
+
+
     //helpers
     private Cohort setUpCohort() {
         Date start_date = new Date();
