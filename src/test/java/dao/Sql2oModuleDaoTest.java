@@ -44,12 +44,6 @@ public class Sql2oModuleDaoTest {
     }
 
     @Test
-    public void addModuleSetsId() {
-        Module testModule = setupModule();
-        assertNotEquals(0, testModule.getId());
-    }
-
-    @Test
     public void getAllReturnsAllModuleInstances() {
         Module testModule = setupModule();
         assertEquals(1, moduleDao.getAll().size());

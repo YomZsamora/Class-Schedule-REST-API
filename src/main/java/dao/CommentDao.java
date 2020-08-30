@@ -7,7 +7,6 @@ import java.util.List;
 public interface CommentDao {
     //create new comment
     void createComment(Comments comment);
-    void add(Comments comment);
 
     List<Comments> getAll();
     Comments findById(int id);

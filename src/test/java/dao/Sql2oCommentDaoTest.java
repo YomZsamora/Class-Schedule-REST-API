@@ -44,12 +44,6 @@ public class Sql2oCommentDaoTest {
     }
 
     @Test
-    public void addCommentSetsId() {
-        Comments testComments = setupComments();
-        assertNotEquals(0, testComments.getId());
-    }
-
-    @Test
     public void getAllReturnsAllComments() {
         Comments testComments = setupComments();
         assertEquals(1, commentDao.getAll().size());

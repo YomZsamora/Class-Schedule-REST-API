@@ -45,12 +45,6 @@ public class Sql2oSessionDaoTest {
     }
 
     @Test
-    public void addSessionSetsId() {
-        Sessions testSession = setupSession();
-        assertNotEquals(0, testSession.getId());
-    }
-
-    @Test
     public void getAllReturnsAllSessions() {
         Sessions sessions = setupSession();
         assertEquals(1, sessionDao.getAll().size());

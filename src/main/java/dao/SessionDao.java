@@ -8,7 +8,6 @@ public interface SessionDao {
 
     //create new session'
     void createSession(Sessions sessions);
-    void add(Sessions sessions);
 
     //read db
     List<Sessions> getAll();

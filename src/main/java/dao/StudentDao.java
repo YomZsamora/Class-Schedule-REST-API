@@ -8,7 +8,6 @@ public interface StudentDao {
 
     //student creates an account
     void createStudentAccount(Students students);
-    void add(Students students);
 
     //get all students
     List<Students> getAll();

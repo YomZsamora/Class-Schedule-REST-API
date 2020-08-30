@@ -40,12 +40,6 @@ public class Sql2oStudentDaoTest {
     }
 
     @Test
-    public void addStudentAccountSetsId() {
-        Students testStudent = setupStudent();
-        assertNotEquals(0, testStudent.getId());
-    }
-
-    @Test
     public void getAllReturnsAllStudents() {
         Students testStudents = new Students("Ben","79adf126ad4", "Android", 1);
         studentDao.createStudentAccount(testStudents);

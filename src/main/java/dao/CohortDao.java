@@ -9,7 +9,6 @@ public interface CohortDao {
 
     //create new cohort
     void createCohort(Cohort cohort);
-    void add(Cohort cohort);
 
     List<Cohort> getAll();
     Cohort findById(int id);

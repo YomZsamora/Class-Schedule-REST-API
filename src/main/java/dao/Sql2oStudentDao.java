@@ -34,24 +34,6 @@ public class Sql2oStudentDao implements StudentDao {
     }
 
     @Override
-    public void add(Students students) {
-        String sqlString = "INSERT INTO students (name, cohort_id, track, uid) VALUES (:name, :cohort_id, :track, :uid)";
-
-        try(Connection con = sql2o.open()){
-            int id = (int)con.createQuery(sqlString, true)
-                    .addParameter("name", students.getStudentName())
-                    .addParameter("cohort_id", students.getCohortId())
-                    .addParameter("track", students.getTrack())
-                    .addParameter("uid", students.getUid())
-                    .executeUpdate()
-                    .getKey();
-            students.setId(id);
-        } catch (Sql2oException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @Override
     public List<Students> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM students")

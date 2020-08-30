@@ -40,12 +40,6 @@ public class Sql2oTechnicalMentorDaoTest {
     }
 
     @Test
-    public void addTechnicalMentor() {
-        TechnicalMentor testTechnicalMentor = setupTechnicalMentor();
-        assertNotEquals(0, testTechnicalMentor .getId());
-    }
-
-    @Test
     public void getAllReturnsAllTMs() {
         TechnicalMentor testTechnicalMentor = new TechnicalMentor("Samora", "7hi687bh8shf9780u");
         technicalMentorDao.createTechnicalMentorAccount(testTechnicalMentor);

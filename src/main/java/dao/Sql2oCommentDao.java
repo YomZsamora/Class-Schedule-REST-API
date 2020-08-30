@@ -33,23 +33,6 @@ public class Sql2oCommentDao implements CommentDao {
     }
 
     @Override
-    public void add(Comments comments) {
-        String sqlString = "INSERT INTO comments (student_id, content) VALUES (:student_id, :content)";
-
-        try(Connection con = sql2o.open()){
-            int id = (int) con.createQuery(sqlString, true)
-                    .bind(comments)
-                    .addParameter("student_id", comments.getStudentId())
-                    .addParameter("content", comments.getContent())
-                    .executeUpdate()
-                    .getKey();
-            comments.setId(id);
-        } catch (Sql2oException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @Override
     public List<Comments> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM comments")

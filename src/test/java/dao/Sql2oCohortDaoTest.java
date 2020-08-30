@@ -43,12 +43,6 @@ public class Sql2oCohortDaoTest {
     }
 
     @Test
-    public void addCohort(){
-        Cohort testCohort = setupCohort();
-        assertNotEquals(0, testCohort.getId());
-    }
-
-    @Test
     public void getAllReturnsAllCohorts() {
         Cohort testCohort = setupCohort();
         assertEquals(1, cohortDao.getAll().size());
@@ -57,7 +51,6 @@ public class Sql2oCohortDaoTest {
     //there is an error with this test
     @Test
     public void findByIdReturnsCorrectCohortIns() {
-
         Date start_date =  new Date();
         Cohort testCohort = new Cohort("MC30", start_date);
         cohortDao.createCohort(testCohort);

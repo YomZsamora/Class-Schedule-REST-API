@@ -20,7 +20,7 @@ public class App {
 
         //TODO ben change this to match the db you have created
         String connectionString = "jdbc:h2:~/class-schedule.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "gideon","33450715");
+        Sql2o sql2o = new Sql2o(connectionString, "","");
 
         sessionDao = new Sql2oSessionDao(sql2o);
         studentDao = new Sql2oStudentDao(sql2o);
@@ -34,7 +34,7 @@ public class App {
         //create new session
         post("/session/new", "application/json", (request, response) -> {
             Sessions sessions = gson.fromJson(request.body(), Sessions.class);
-            sessionDao.add(sessions);
+            sessionDao.createSession(sessions);
             response.status(201);
             response.type("application/json");
             return gson.toJson(sessions);
@@ -54,7 +54,7 @@ public class App {
             return gson.toJson(sessionDao.findById(sessionId));
         });
 
-        //having trouble creating this 2 below
+        //having trouble creating this
         //edit an existing session
 //        put("/sessions/:id", "application/json",(request, response) -> {
 //
@@ -72,7 +72,7 @@ public class App {
         //create new student
         post("/student/new", "application/json", (request, response) -> {
             Students students = gson.fromJson(request.body(), Students.class);
-            studentDao.add(students);
+            studentDao.createStudentAccount(students);
             response.status(201);
             response.type("application/json");
             return gson.toJson(students);
@@ -109,7 +109,7 @@ public class App {
         //create new mentor
         post("/mentor/new", "application/json", (request, response) -> {
             TechnicalMentor technicalMentor = gson.fromJson(request.body(), TechnicalMentor.class);
-            technicalMentorDao.add(technicalMentor);
+            technicalMentorDao.createTechnicalMentorAccount(technicalMentor);
             response.status(201);
             response.type("application/json");
             return gson.toJson(technicalMentor);
@@ -129,7 +129,7 @@ public class App {
             return gson.toJson(technicalMentorDao.findById(technicalMentorId));
         });
 
-        //having trouble creating this 2 below
+        //having trouble creating this
         //edit an existing mentor
 //        put("/mentor/:id", "application/json",(request, response) -> {
 //
@@ -147,7 +147,7 @@ public class App {
         //create new module
         post("/module/new", "application/json", (request, response) -> {
             Module module = gson.fromJson(request.body(), Module.class);
-            moduleDao.add(module);
+            moduleDao.createModule(module);
             response.status(201);
             response.type("application/json");
             return gson.toJson(module);
@@ -185,7 +185,7 @@ public class App {
         //create new cohort
         post("/cohort/new", "application/json", (request, response) -> {
             Cohort cohort = gson.fromJson(request.body(), Cohort.class);
-            cohortDao.add(cohort);
+            cohortDao.createCohort(cohort);
             response.status(201);
             response.type("application/json");
             return gson.toJson(cohort);
@@ -205,7 +205,7 @@ public class App {
             return gson.toJson(cohortDao.findById(cohortId));
         });
 
-        //having trouble creating this 2 below
+        //having trouble creating this
         //edit an existing cohort
 //        put("/cohort/:id", "application/json",(request, response) -> {
 //
@@ -223,7 +223,7 @@ public class App {
         //create new comment
         post("/comment/new", "application/json", (request, response) -> {
             Comments comments = gson.fromJson(request.body(), Comments.class);
-            commentDao.add(comments);
+            commentDao.createComment(comments);
             response.status(201);
             response.type("application/json");
             return gson.toJson(comments);
@@ -243,7 +243,7 @@ public class App {
             return gson.toJson(commentDao.findById(commentId));
         });
 
-        //having trouble creating this 2 below
+        //having trouble creating this
         //edit an existing comment
 //        put("/comment/:id", "application/json",(request, response) -> {
 //
