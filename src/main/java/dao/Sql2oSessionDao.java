@@ -16,21 +16,21 @@ public class Sql2oSessionDao implements SessionDao{
     }
 
     @Override
-    public void createSession(Sessions session) {
+    public void createSession(Sessions sessions) {
         String sqlString = "INSERT INTO sessions (session_name, description, cohort_id, module_id, start_time, end_time) VALUES (:session_name, :description, :cohort_id, :module_id, :start_time, :end_time)";
 
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sqlString, true)
-                    .bind(session)
-                    .addParameter("session_name", session.getSessionName())
-                    .addParameter("description", session.getDescription())
-                    .addParameter("cohort_id", session.getCohortId())
-                    .addParameter("module_id", session.getModuleId())
-                    .addParameter("start_time", session.getStart_time())
-                    .addParameter("end_time", session.getEnd_time())
+                    .bind(sessions)
+                    .addParameter("session_name", sessions.getSessionName())
+                    .addParameter("description", sessions.getDescription())
+                    .addParameter("cohort_id", sessions.getCohortId())
+                    .addParameter("module_id", sessions.getModuleId())
+                    .addParameter("start_time", sessions.getStart_time())
+                    .addParameter("end_time", sessions.getEnd_time())
                     .executeUpdate()
                     .getKey();
-            session.setId(id);
+            sessions.setId(id);
         } catch (Sql2oException ex) {
             System.out.println(String.format("Problem here ! Sql2oException : %s", ex));
         }
@@ -39,7 +39,23 @@ public class Sql2oSessionDao implements SessionDao{
 
     @Override
     public void add(Sessions sessions) {
+        String sqlString = "INSERT INTO sessions (session_name, description, cohort_id, module_id, start_time, end_time) VALUES (:session_name, :description, :cohort_id, :module_id, :start_time, :end_time)";
 
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sqlString, true)
+                    .bind(sessions)
+                    .addParameter("session_name", sessions.getSessionName())
+                    .addParameter("description", sessions.getDescription())
+                    .addParameter("cohort_id", sessions.getCohortId())
+                    .addParameter("module_id", sessions.getModuleId())
+                    .addParameter("start_time", sessions.getStart_time())
+                    .addParameter("end_time", sessions.getEnd_time())
+                    .executeUpdate()
+                    .getKey();
+            sessions.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(String.format("Problem here ! Sql2oException : %s", ex));
+        }
     }
 
     @Override

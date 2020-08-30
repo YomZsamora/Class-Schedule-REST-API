@@ -19,7 +19,7 @@ public class Sql2oSessionDaoTest {
         //this method executes once and before all tests
         //TODO make sure to change this to your localhost before running tests
         String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
-        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+        Sql2o sql2o = new Sql2o(connectionString, "gideon", "33450715");
 
         sessionDao = new Sql2oSessionDao(sql2o);
         conn = sql2o.open();
@@ -40,6 +40,12 @@ public class Sql2oSessionDaoTest {
 
     @Test
     public void creatingSessionSetsId() {
+        Sessions testSession = setupSession();
+        assertNotEquals(0, testSession.getId());
+    }
+
+    @Test
+    public void addSessionSetsId() {
         Sessions testSession = setupSession();
         assertNotEquals(0, testSession.getId());
     }
