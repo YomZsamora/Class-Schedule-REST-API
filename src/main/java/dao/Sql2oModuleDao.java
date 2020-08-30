@@ -30,6 +30,21 @@ public class Sql2oModuleDao implements ModuleDao {
     }
 
     @Override
+    public void add(Module module) {
+        String sqlString = "INSERT INTO module (name) VALUES (:name)";
+
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sqlString, true)
+                    .addParameter("name", module.getModuleName())
+                    .executeUpdate()
+                    .getKey();
+            module.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public List<Module> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM module")
@@ -69,9 +84,5 @@ public class Sql2oModuleDao implements ModuleDao {
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
-    }
-
-    public void add(Module module) {
-
     }
 }
