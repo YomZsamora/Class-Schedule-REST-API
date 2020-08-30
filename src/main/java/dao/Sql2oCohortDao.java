@@ -31,6 +31,21 @@ public class Sql2oCohortDao implements CohortDao {
         }
     }
 
+    public void add(Cohort cohort) {
+        String sqlString = "INSERT INTO cohort (name, start_date) VALUES (:name, :start_date)";
+
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sqlString, true)
+                    .addParameter("name",cohort.getName())
+                    .addParameter("start_date",cohort.getStart_date())
+                    .executeUpdate()
+                    .getKey();
+            cohort.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
     @Override
     public List<Cohort> getAll() {
         try(Connection con = sql2o.open()){
@@ -71,9 +86,5 @@ public class Sql2oCohortDao implements CohortDao {
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
-    }
-
-    public void add(Cohort cohort) {
-
     }
 }
