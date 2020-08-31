@@ -17,7 +17,8 @@ public class Sql2oModuleDaoTest {
         //this method executes once and before all tests
         //TODO make sure to change this to your localhost before running tests
         String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
-        Sql2o sql2o = new Sql2o(connectionString, "gideon", "33450715");
+//        Sql2o sql2o = new Sql2o(connectionString, "gideon", "33450715");
+        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
 
         moduleDao = new Sql2oModuleDao(sql2o);
         conn = sql2o.open();
