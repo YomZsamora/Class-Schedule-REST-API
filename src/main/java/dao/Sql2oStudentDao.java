@@ -21,7 +21,7 @@ public class Sql2oStudentDao implements StudentDao {
 
         try(Connection con = sql2o.open()){
             int id = (int)con.createQuery(sqlString, true)
-                    .addParameter("name", students.getStudentName())
+                    .addParameter("name", students.getName())
                     .addParameter("cohort_id", students.getCohortId())
                     .addParameter("track", students.getTrack())
                     .addParameter("uid", students.getUid())
