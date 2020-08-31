@@ -14,14 +14,6 @@ public class Cohort {
         this.start_date = start_date;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -38,18 +30,43 @@ public class Cohort {
         this.start_date = start_date;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cohort cohort = (Cohort) o;
         return id == cohort.id &&
-                Objects.equals(name, cohort.name) &&
-                Objects.equals(start_date, cohort.start_date);
+                name.equals(cohort.name) &&
+                start_date.equals(cohort.start_date);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, start_date, id);
     }
+
+    //this way didn't work
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Cohort cohort = (Cohort) o;
+//        return id == cohort.id &&
+//                Objects.equals(name, cohort.name) &&
+//                Objects.equals(start_date, cohort.start_date);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(name, start_date, id);
+//    }
 }

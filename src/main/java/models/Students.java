@@ -3,22 +3,22 @@ package models;
 import java.util.Objects;
 
 public class Students {
-    private String studentName;
+    private String name;
     private String uid;
     private String track;
     private int cohort_id;
     private int id;
 
 
-    public Students(String studentName, String uid, String track, int cohort_id) {
-        this.studentName = studentName;
+    public Students(String name, String uid, String track, int cohort_id) {
+        this.name = name;
         this.uid = uid;
         this.track = track;
         this.cohort_id = cohort_id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
     public int getCohortId() {
@@ -29,8 +29,8 @@ public class Students {
         return uid;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName= studentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setUid(String uid) {
@@ -64,14 +64,14 @@ public class Students {
         Students students = (Students) o;
         return cohort_id == students.cohort_id &&
                 id == students.id &&
-                Objects.equals(studentName, students.studentName) &&
+                Objects.equals(name, students.name) &&
                 Objects.equals(uid, students.uid) &&
                 Objects.equals(track, students.track);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentName, uid, track, cohort_id, id);
+        return Objects.hash(name, uid, track, cohort_id, id);
     }
 
     //    @Override
