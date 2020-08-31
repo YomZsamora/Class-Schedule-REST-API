@@ -52,8 +52,7 @@ public class Sql2oStudentDaoTest {
 
     @Test
     public void getAllReturnsAllStudents() {
-        Students testStudents = new Students("Ben","79adf126ad4", "Android", 1);
-        studentDao.createStudentAccount(testStudents);
+        Students testStudents = setupStudent();
         assertEquals(1, studentDao.getAll().size());
     }
 
