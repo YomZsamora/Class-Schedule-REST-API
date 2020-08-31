@@ -14,8 +14,11 @@ public class Sql2oTechnicalMentorDaoTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
-        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+//        String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
+//        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+
+        String connectionString = "jdbc:postgresql://ec2-52-200-111-186.compute-1.amazonaws.com:5432/d9dbmvjbe8ikml";
+        Sql2o sql2o = new Sql2o(connectionString, "mwstdukciefqhd", "077938e0cb68bfccc22eb8b19804f13757c2fbd4876103c77b525b70e499f110");
 
         technicalMentorDao = new Sql2oTechnicalMentorDao(sql2o);
         conn = sql2o.open();

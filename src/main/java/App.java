@@ -8,6 +8,15 @@ import org.sql2o.Sql2o;
 import static spark.Spark.*;
 
 public class App {
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
+
     public static void main(String[] args) {
         Sql2oSessionDao sessionDao;
         Sql2oStudentDao studentDao;
@@ -18,9 +27,14 @@ public class App {
         Connection conn;
         Gson gson = new Gson();
 
-        //TODO ben change this to match the db you have created
-        String connectionString = "jdbc:h2:~/class-schedule.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "","");
+        port(getHerokuAssignedPort());
+
+        //TODO change this to match the local db you have created
+//        String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
+//        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+
+        String connectionString = "jdbc:postgresql://ec2-52-70-15-120.compute-1.amazonaws.com:5432/dc3s96ls8kqvhf";
+        Sql2o sql2o = new Sql2o(connectionString, "bdmoxcpjclbybe", "1721f547f35ba2a92f727c64d258d4e09b8466ec13618191633451f0e958faa3");
 
         sessionDao = new Sql2oSessionDao(sql2o);
         studentDao = new Sql2oStudentDao(sql2o);
@@ -261,5 +275,25 @@ public class App {
         after((request, response) -> {
             response.type("application/json");
         });
+
+        //this allows Cross-Origin Resource Sharing (CORS policy) between different servers
+        options("/*",
+                (request, response) -> {
+                    String accessControlRequestHeaders = request
+                            .headers("Access-Control-Request-Headers");
+                    if (accessControlRequestHeaders != null) {
+                        response.header("Access-Control-Allow-Headers",
+                                accessControlRequestHeaders);
+                    }
+                    String accessControlRequestMethod = request
+                            .headers("Access-Control-Request-Method");
+                    if (accessControlRequestMethod != null) {
+                        response.header("Access-Control-Allow-Methods",
+                                accessControlRequestMethod);
+                    }
+                    return "OK";
+                });
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+
     }
 }
