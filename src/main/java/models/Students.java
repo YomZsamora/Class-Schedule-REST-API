@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Students {
     private String studentName;
     private String uid;
@@ -59,23 +61,41 @@ public class Students {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Students students = (Students) o;
-
-        if (cohort_id != students.cohort_id) return false;
-        if (id != students.id) return false;
-        if (!studentName.equals(students.studentName)) return false;
-        if (!uid.equals(students.uid)) return false;
-        return track.equals(students.track);
+        return cohort_id == students.cohort_id &&
+                id == students.id &&
+                Objects.equals(studentName, students.studentName) &&
+                Objects.equals(uid, students.uid) &&
+                Objects.equals(track, students.track);
     }
 
     @Override
     public int hashCode() {
-        int result = studentName.hashCode();
-        result = 31 * result + uid.hashCode();
-        result = 31 * result + track.hashCode();
-        result = 31 * result + cohort_id;
-        result = 31 * result + id;
-        return result;
+        return Objects.hash(studentName, uid, track, cohort_id, id);
     }
+
+    //    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Students students = (Students) o;
+//
+//        if (cohort_id != students.cohort_id) return false;
+//        if (id != students.id) return false;
+//        if (!studentName.equals(students.studentName)) return false;
+//        if (!uid.equals(students.uid)) return false;
+//        return track.equals(students.track);
+//    }
+//
+//    //hashcode error(Find why student name could be null)
+//    @Override
+//    public int hashCode() {
+//        int result = studentName.hashCode();
+//        result = 31 * result + uid.hashCode();
+//        result = 31 * result + track.hashCode();
+//        result = 31 * result + cohort_id;
+//        result = 31 * result + id;
+//        return result;
+//    }
 }

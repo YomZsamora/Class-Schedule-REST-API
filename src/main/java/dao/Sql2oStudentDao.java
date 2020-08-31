@@ -16,18 +16,18 @@ public class Sql2oStudentDao implements StudentDao {
     }
 
     @Override
-    public void createStudentAccount(Students student) {
+    public void createStudentAccount(Students students) {
         String sqlString = "INSERT INTO students (name, cohort_id, track, uid) VALUES (:name, :cohort_id, :track, :uid)";
 
         try(Connection con = sql2o.open()){
             int id = (int)con.createQuery(sqlString, true)
-                    .addParameter("name", student.getStudentName())
-                    .addParameter("cohort_id", student.getCohortId())
-                    .addParameter("track", student.getTrack())
-                    .addParameter("uid", student.getUid())
+                    .addParameter("name", students.getStudentName())
+                    .addParameter("cohort_id", students.getCohortId())
+                    .addParameter("track", students.getTrack())
+                    .addParameter("uid", students.getUid())
                     .executeUpdate()
                     .getKey();
-            student.setId(id);
+            students.setId(id);
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }

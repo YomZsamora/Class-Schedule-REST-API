@@ -3,6 +3,7 @@ package dao;
 import models.Cohort;
 
 import java.util.List;
+import java.util.zip.CheckedOutputStream;
 
 public interface CohortDao {
 
