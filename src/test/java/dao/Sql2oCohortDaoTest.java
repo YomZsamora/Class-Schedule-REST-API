@@ -18,8 +18,8 @@ public class Sql2oCohortDaoTest {
     @BeforeClass
     public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
-//        Sql2o sql2o = new Sql2o(connectionString, "gideon", "33450715");
         Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
+//        Sql2o sql2o = new Sql2o(connectionString, "gideon", "33450715");
 
         cohortDao = new Sql2oCohortDao(sql2o);
         conn = sql2o.open();

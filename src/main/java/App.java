@@ -19,8 +19,8 @@ public class App {
         Gson gson = new Gson();
 
         //TODO ben change this to match the db you have created
-        String connectionString = "jdbc:h2:~/class-schedule.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "","");
+        String connectionString = "jdbc:postgresql://localhost:5432/class_schedule_test";
+        Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
 
         sessionDao = new Sql2oSessionDao(sql2o);
         studentDao = new Sql2oStudentDao(sql2o);
