@@ -1,9 +1,12 @@
 package dao;
 
+import models.Cohort;
 import models.Students;
 import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +14,7 @@ public class Sql2oStudentDaoTest {
 
     private static Connection conn;
     private static Sql2oStudentDao studentDao;
+    private static Sql2oCohortDao cohortDao;
 
     @BeforeClass
     public static void setUp() throws Exception {
@@ -23,6 +27,7 @@ public class Sql2oStudentDaoTest {
 
 
         studentDao = new Sql2oStudentDao(sql2o);
+        cohortDao = new Sql2oCohortDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -30,6 +35,7 @@ public class Sql2oStudentDaoTest {
     public void tearDown() throws Exception {
         System.out.println("Clearing database");
         studentDao.clearAll();
+        cohortDao.clearAll();
     }
 
     @AfterClass
@@ -76,6 +82,9 @@ public class Sql2oStudentDaoTest {
 
     //helper methods
     private Students setupStudent(){
+        Date start_date = new Date();
+        Cohort cohort = new Cohort("MC30",start_date);
+        cohortDao.createCohort(cohort);
         Students student = new Students("Ben","79adf126ad4", "Android", 1);
         studentDao.createStudentAccount(student);
         return student;

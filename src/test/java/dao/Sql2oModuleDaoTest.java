@@ -62,9 +62,8 @@ public class Sql2oModuleDaoTest {
     @Test
     public void deleteByIdRemovesCorrectModuleInstance() {
         Module testModule = setupModule();
-        Module otherModule = setupModule();
         moduleDao.deleteById(testModule.getId());
-        assertEquals(1, moduleDao.getAll().size());
+        assertEquals(0, moduleDao.getAll().size());
     }
 
     @Test

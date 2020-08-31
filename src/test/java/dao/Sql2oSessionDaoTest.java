@@ -1,11 +1,14 @@
 package dao;
 
+import models.Cohort;
+import models.Module;
 import models.Sessions;
 import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
@@ -13,6 +16,8 @@ public class Sql2oSessionDaoTest {
 
     private static Connection conn;
     private static Sql2oSessionDao sessionDao;
+    private static Sql2oCohortDao cohortDao;
+    private static Sql2oModuleDao moduleDao;
 
     @BeforeClass
     public static void setUp() throws Exception {
@@ -25,6 +30,8 @@ public class Sql2oSessionDaoTest {
         Sql2o sql2o = new Sql2o(connectionString, "mwstdukciefqhd", "077938e0cb68bfccc22eb8b19804f13757c2fbd4876103c77b525b70e499f110");
 
         sessionDao = new Sql2oSessionDao(sql2o);
+        cohortDao = new Sql2oCohortDao(sql2o);
+        moduleDao = new Sql2oModuleDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -33,6 +40,8 @@ public class Sql2oSessionDaoTest {
         //this method executes after each test
         System.out.println("Clearing database");
         sessionDao.clearAll();
+        cohortDao.clearAll();
+        moduleDao.clearAll();
     }
 
     @AfterClass
@@ -85,6 +94,11 @@ public class Sql2oSessionDaoTest {
             e.printStackTrace();
         }
         Timestamp end_time = new Timestamp(System.currentTimeMillis());
+        java.util.Date start_date =  new Date();
+        Cohort cohort = new Cohort("MC30",start_date);
+        cohortDao.createCohort(cohort);
+        Module module = new Module("Angular");
+        moduleDao.createModule(module);
         Sessions session = new Sessions("Unblocking session", "Heroku deployment and endpoints testing", 1, 1, start_time, end_time);
         sessionDao.createSession(session);
         return session;
